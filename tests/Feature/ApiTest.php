@@ -3,11 +3,13 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
 use App\Models\Category;
 
 class ApiTest extends TestCase
 {
+    use RefreshDatabase;
     public function test_user_can_register()
     {
         $response = $this->postJson('/api/register', [
