@@ -1,10 +1,10 @@
-# Use the official PHP 8.2 FPM image as a base
+# Use official PHP 8.2 FPM image
 FROM php:8.2-fpm
 
 # Set working directory
 WORKDIR /var/www
 
-# Install system dependencies
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -14,20 +14,27 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpq-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    nginx \
+    supervisor
+
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql pdo_pgsql
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy existing application files
+# Copy application files
 COPY . .
 
-# Install PHP dependencies
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose port 9000 for PHP-FPM
-EXPOSE 9000
+# Copy Nginx config
+COPY nginx.conf /etc/nginx/sites-available/default
 
-# Start PHP-FPM server
-CMD ["php-fpm"]
+# Expose ports
+EXPOSE 80
+
+# Start services using Supervisor
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
