@@ -5,7 +5,7 @@ FROM php:8.2-fpm
 WORKDIR /var/www
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update --no-cache && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     libpq-dev \
     nginx \
-    supervisor
+    supervisor \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -31,10 +32,13 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 # Copy Nginx config
-COPY nginx.conf /etc/nginx/sites-available/default
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Expose ports
-EXPOSE 80
+# Copy Supervisor config
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose port
+EXPOSE 8080
 
 # Start services using Supervisor
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
