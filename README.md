@@ -1,66 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Wardrobe Management Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Name
 
-## About Laravel
+Wardrobe Management Backend
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Author Information
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This backend project was created by:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Paul Wanyoike Ngugi
+- Date: 26th February, 2025
 
-## Learning Laravel
+## Setup/Installation Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clone the Repository:**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```
+git clone https://github.com/your-username/wardrobe-management-backend.git
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Install Dependencies:**
 
-## Laravel Sponsors
+Ensure you have PHP and Composer installed. Then, run:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
+composer install
+```
 
-### Premium Partners
+3. **Create a Database:**
+Use MySQL Workbench or another tool to create a database named `wardrobe_management`.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. **Update `.env` File:**
+Configure your database settings in the `.env` file.
 
-## Contributing
+5. **Run Migrations:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+php artisan migrate
+```
 
-## Code of Conduct
+6. **Start the Server:**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+php artisan serve
+```
 
-## Security Vulnerabilities
+## Project Structure
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The project is built using Laravel. Key directories include:
 
-## License
+*   `app/`: Contains all the Eloquent models and controllers.
+*   `config/`: Contains application configuration files.
+*   `database/`: Contains database migrations and seeders.
+*   `public/`: Contains static assets like images, etc.
+*   `routes/`: Contains API routes defined in `api.php`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Technologies Used
+
+*   **Laravel:** A PHP framework for building robust web applications.
+*   **MySQL:** A relational database management system.
+*   **Docker:** Used for containerization.
+
+## API Endpoints
+
+The following endpoints are available for interacting with the backend:
+
+### GET /api/wardrobe
+
+- **Purpose**: List all wardrobe items.
+- **Response Format**: JSON
+
+### POST /api/wardrobe
+
+- **Purpose**: Create a new wardrobe item.
+- **Request Body**: JSON object with item details.
+- **Response Format**: JSON
+
+### GET /api/wardrobe/{id}
+
+- **Purpose**: Show a specific wardrobe item.
+- **Response Format**: JSON
+
+### PUT /api/wardrobe/{id}
+
+- **Purpose**: Update a wardrobe item.
+- **Request Body**: JSON object with updated item details.
+- **Response Format**: JSON
+
+### DELETE /api/wardrobe/{id}
+
+- **Purpose**: Delete a wardrobe item.
+- **Response Format**: JSON
+
+## Models
+
+- **WardrobeItem**: Represents a single item in the wardrobe.
+- **User**: Represents a user who can manage their wardrobe.
+
+## Relationships
+
+- A **User** has many **WardrobeItems**.
+- A **WardrobeItem** belongs to a **User**.
+
+## Validations
+
+- **WardrobeItem**: Must have a name and description.
+- **User**: Must have a username and email.
+
+## Known Issues and TODOs
+
+*   **Deployment**: Currently not deployed to a production environment.
+*   **Testing**: Additional tests are needed for comprehensive coverage.
+*   **Security**: Review and implement additional security measures.
+
+## Support and Contact Information
+
+For questions or support, please contact:
+
+- Email: [paulnyoiken@gmail.com](mailto:paulnyoiken@gmail.com)
+
+## License and Copyright Information
+
+Copyright 2025 Paul Wanyoike Ngugi.
+
+This project is open source and available under the [MIT License](LICENSE).
