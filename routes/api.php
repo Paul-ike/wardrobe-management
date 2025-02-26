@@ -17,3 +17,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('clothing-items', ClothingItemController::class);
 });
+
+Route::get('/', function () {
+    return response()->json([
+        'message' => 'Welcome to Wardrobe Management API',
+        'status' => 'success'
+    ]);
+});
