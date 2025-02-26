@@ -37,4 +37,4 @@ COPY nginx.conf /etc/nginx/sites-available/default
 EXPOSE 8080
 
 # Start services using Supervisor
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]

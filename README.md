@@ -102,6 +102,9 @@ The following endpoints are available for interacting with the backend:
 - A **User** has many **WardrobeItems**.
 - A **WardrobeItem** belongs to a **User**.
 
+![Screenshot](./public/Screenshot%20(983).png)
+[![ERD Link](link)](https://dbdiagram.io/d)
+
 ## Validations
 
 - **WardrobeItem**: Must have a name and description.
