@@ -35,6 +35,7 @@ COPY nginx.conf /etc/nginx/sites-available/default
 
 # Expose ports
 EXPOSE 8080
+CMD ["php-fpm", "-D"] && nginx -g "daemon off;"
 
 # Start services using Supervisor
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
