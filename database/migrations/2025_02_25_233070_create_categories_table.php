@@ -13,6 +13,12 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        DB::table('categories')->insert([
+            ['name' => 'Shirts'],
+            ['name' => 'Pants'],
+            ['name' => 'Shoes'],
+        ]);
     }
 
     public function down()
