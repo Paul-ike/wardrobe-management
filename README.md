@@ -16,7 +16,7 @@ This backend project was created by:
 1. **Clone the Repository:**
 
 ```
-git clone https://github.com/your-username/wardrobe-management-backend.git
+git clone https://github.com/Paul-ike/wardrobe-management-backend.git
 ```
 
 2. **Install Dependencies:**
