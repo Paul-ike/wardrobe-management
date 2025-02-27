@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClothingItemController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 
 // Custom AuthController for handling registration and login
 Route::post('/register', [AuthController::class, 'register']);
@@ -24,3 +25,5 @@ Route::get('/', function () {
         'status' => 'success'
     ]);
 });
+
+Route::get('/categories', [CategoryController::class, 'index']);
